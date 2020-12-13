@@ -1,26 +1,26 @@
 {{#each this}}
-<li class="list-item">
-    <h2 class="list-header">{{name}}</h2>
-    <div class="list-flex-wrap">
-        <ul>
-            <li>
-                <span>Capital</span>
+<li class="country-list__item">
+    <h2 class="country__header">{{name}}</h2>
+    <div class="wrap">
+        <ul class="stat-list wrap__item list">
+            <li class="item">
+                <span class="title">Capital: </span>
                 <span>{{capital}}</span>
             </li>
-            <li>
-                <span>Population</span>
+            <li class="item">
+                <span class="title">Population: </span>
                 <span>{{population}}</span>
             </li>
-            <li>
-                <span>Languages</span>
-                <ul>
+            <li class="item">
+                <span class="title">Languages: </span>
+                <ul class="lang-list">
                     {{#each languages}}
-                    <li>{{name}}</li>
+                    <li class="item">{{name}}</li>
                     {{/each}}
                 </ul>
             </li>
         </ul>
-        <img src="{{flag}}" alt="{{name}}" width="250" />
+        <img src="{{flag}}" alt="{{name}}" width="400" class="wrap__item" />
     </div>
 </li>
 {{/each}}
