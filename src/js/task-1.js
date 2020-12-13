@@ -2,9 +2,9 @@ import countryInfoHandleBar from '../template/country.hbs'
 import countryManyHandleBar from '../template/many-countries.hbs'
 const debounce = require('lodash.debounce');
 
-// import { alert, defaultModules } from 'node_modules/@pnotify/core/dist/PNotify.js';
-//   import * as PNotifyMobile from 'node_modules/@pnotify/mobile/dist/PNotifyMobile.js';
-//   defaultModules.set(PNotifyMobile, {});
+import { alert, defaultModules } from '../../node_modules/@pnotify/core/dist/PNotify.js';
+  import * as PNotifyMobile from '../../node_modules/@pnotify/mobile/dist/PNotifyMobile.js';
+  defaultModules.set(PNotifyMobile, {});
 
 const refs = {
   body: document.querySelector('body'),
@@ -33,25 +33,26 @@ function findCountry(event) {
     .then(data => {
       console.log(data);
       if (data.status === 404) {
-        console.log('there is no country with such name');
-        // alert({
-        //   text: 'Notice me, senpai!'
-        // });
+        alert({
+          text: 'There is no Country with such name! Try another.'
+        });
         return;
       }
-      if (data.length < 4) {
+      if (data.length === 1) {
         const markUp = countryInfoHandleBar(data);
         refs.ul.classList.add('list');
         refs.ul.insertAdjacentHTML('beforeend', markUp);
         return;
       }
-      if (data.length >= 4 && data.length <= 10 ) {
+      if (data.length > 1 && data.length <= 10 ) {
         const markUp = countryManyHandleBar(data);
         refs.ul.insertAdjacentHTML('beforeend', markUp);
         return;
       }
       if (data.length > 10 ) {
-        console.log('there is to many countries');
+        alert({
+          text: 'There are to many variants! Try more specific name.'
+        });
         return;
       }
     })
