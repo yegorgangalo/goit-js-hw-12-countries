@@ -2,9 +2,7 @@ import countryInfoHandleBar from '../template/country.hbs'
 import countryManyHandleBar from '../template/many-countries.hbs'
 const debounce = require('lodash.debounce');
 
-import { alert, defaultModules } from '../../node_modules/@pnotify/core/dist/PNotify.js';
-  import * as PNotifyMobile from '../../node_modules/@pnotify/mobile/dist/PNotifyMobile.js';
-  defaultModules.set(PNotifyMobile, {});
+import { alert, notice, info, success, error } from '@pnotify/core';
 
 const refs = {
   body: document.querySelector('body'),
@@ -33,7 +31,9 @@ function findCountry(event) {
     .then(data => {
       console.log(data);
       if (data.status === 404) {
-        alert({
+        error({
+          delay: 3000,
+          width: '300px',
           text: 'There is no Country with such name! Try another.'
         });
         return;
@@ -50,7 +50,9 @@ function findCountry(event) {
         return;
       }
       if (data.length > 10 ) {
-        alert({
+        info({
+          delay: 3000,
+          width: '300px',
           text: 'There are to many variants! Try more specific name.'
         });
         return;
