@@ -1,7 +1,7 @@
 const debounce = require('lodash.debounce');
 import refs from './refs.js';
 import './static-markup.js';
-import fetchCountries from './fetch-country.js';
+import fetchCountries from './fetchCountries.js';
 import updateMarkupCountry from './update-markup-country.js';
 
 const { input, ul } = refs;
